@@ -2,15 +2,27 @@ package com.in28minutes.springboot.myfirstwebapp.todo;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.Size;
 
+@Entity
+@Table(name="todo")
 public class Todo {
+	public Todo() {
+		
+	}
 
+	@Id
+	@GeneratedValue
 	private int id;
 	private String username;
-	
 	@Size(min=5, message = "Enter valid description")
 	private String description;
+	@FutureOrPresent(message = "Enter a present or future date")
 	private LocalDate targetDate;
 	private boolean done;
 
